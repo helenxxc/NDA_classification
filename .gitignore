@@ -1,0 +1,16 @@
+# Model weights
+models/
+*.safetensors
+*.pt
+*.bin
+*.ckpt
+
+# Frontend
+node_modules/
+dist/
+build/
+
+# Large archives
+*.zip
+*.tar
+*.gz

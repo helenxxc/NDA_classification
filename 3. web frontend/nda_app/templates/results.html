@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Classification Results</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        tr.flagged-row {
+            background-color: #ffcccc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Model Used: {{ model_used }}</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for col in tables[0].keys() %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in tables %}
+            <tr {% if row.flagged==True %} class="flagged-row" {% endif %}>
+                {% for value in row.values() %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/download"> Download CSV</a>
+</body>
+
+</html>

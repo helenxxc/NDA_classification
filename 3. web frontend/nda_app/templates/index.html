@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NDA Clause Classification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #dde5f0, #f4f6fa);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 30px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .upload-card,
+        .info-card {
+            width: 400px;
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .model-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        .accuracy-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .accuracy-list li {
+            background: #f8f9fb;
+            margin-bottom: 8px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-left: 4px solid #007bff;
+        }
+
+        .label {
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Upload & Model Selection -->
+        <div class="upload-card">
+            <h2>NDA Clause Classification</h2>
+            <form method="POST" enctype="multipart/form-data">
+
+                <label>Upload NDA (.docx):</label>
+                <input type="file" name="file" accept=".docx" required>
+
+                <label>Select Model:</label>
+                <select name="model_name" required>
+                    {% for key in models %}
+                    <option value="{{ key }}">{{ names[key] }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Process & Predict</button>
+            </form>
+        </div>
+
+        <!-- Model Performance -->
+        <div class="info-card">
+            <div class="model-title">📊 Model Performance</div>
+            <ul class="accuracy-list">
+                <li><span class="label">BERT-base-uncased</span> <span>97.60%</span></li>
+                <li><span class="label">DistilBERT-base</span> <span>97.55%</span></li>
+                <li><span class="label">RoBERTa-base</span> <span>97.39%</span></li>
+                <li><span class="label">SVM(shallow)</span> <span>97%</span></li>
+                <li><span class="label">XGBoost+opunta</span> <span>96.85%</span></li>
+                <li><span class="label">XGBoost(shallow)</span> <span>96%</span></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
